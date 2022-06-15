@@ -5,7 +5,7 @@ const {
   fetchNoRetry,
 } = require(`${basePath}/utils/functions/fetchWithRetry.js`);
 const { CHAIN, CONTRACT_NAME } = require(`${basePath}/src/config.js`);
-
+console.log("basePath", basePath);
 const retrieveContract = async () => {
   try {
     const rawDeployData = fs.readFileSync(
@@ -36,7 +36,10 @@ const retrieveContract = async () => {
       console.log(`Contract ${CONTRACT_NAME} deployment failed`);
     }
   } catch (error) {
-    console.log(`CATCH: Contract ${CONTRACT_NAME} deployment failed`, `ERROR: ${error}`);
+    console.log(
+      `CATCH: Contract ${CONTRACT_NAME} deployment failed`,
+      `ERROR: ${error}`
+    );
   }
 };
 

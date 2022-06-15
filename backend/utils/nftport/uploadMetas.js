@@ -3,7 +3,9 @@ const path = require("path");
 const basePath = process.cwd();
 const fs = require("graceful-fs");
 
-const { fetchNoRetry } = require(`${basePath}/utils/functions/fetchWithRetry.js`);
+const {
+  fetchNoRetry,
+} = require(`${basePath}/utils/functions/fetchWithRetry.js`);
 
 const { GENERIC } = require(`${basePath}/src/config.js`);
 
@@ -23,7 +25,7 @@ function getFileStreamForJSONFiles() {
     return a.split(".")[0] - b.split(".")[0];
   });
   files.forEach((file) => {
-    if (!regex.test(file))  return;
+    if (!regex.test(file)) return;
     const fileData = fs.createReadStream(path.join(readDir, file));
     jsonArray.push(fileData);
   });
@@ -70,15 +72,15 @@ async function main() {
     const uploadedMeta = `${writeDir}/_ipfsMetasResponse.json`;
 
     const genericObject = {
-      "name": metaData.name,
-      "description": metaData.description,
-      "file_url": metaData.image,
-      "external_url": metaData?.external_url,
-      "custom_fields": {
-        "date": metaData.date,
-        "compiler": "HashLips Art Engine - codeSTACKr Modified"
-      }
-    }
+      name: metaData.name,
+      description: metaData.description,
+      file_url: metaData.image,
+      external_url: metaData?.external_url,
+      custom_fields: {
+        date: metaData.date,
+        compiler: "HashLips Art Engine",
+      },
+    };
 
     try {
       const url = "https://api.nftport.xyz/v0/metadata";
